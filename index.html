@@ -20,7 +20,7 @@
 
         }
         img {
-            width: 400px;
+            max-width: 600px;
         }
         ul {
             padding: 0;
@@ -31,7 +31,7 @@
 <body>
     <img src="flyer.jpg" alt="">
     <h1>SSB64 Tournament<small>sponsored by 600 billions</small></h1>
-    <h1 id="price">21.000 sats <small for="">Current Pricepool</small></h1>
+    <h1><span id="price">21.000</span> sats <small for="">Current Pricepool</small></h1>
     <h2>Location</h2>
     <p>Zitadelle Graz 2023</p>
     <h2>Rules</h2>
@@ -43,9 +43,20 @@
         <li>3rd place: 600 billion condoms and sticker</li>
     </ul>
     <h2>Registration</h2>
-    <p>At the citadel</p>
+    <img src="https://lnbits.b1tco1n.org/api/v1/qrcode/LNURL1DP68GURN8GHJ7MRWVF5HGUEWVGCHGCM0X9HZUMMJVUHKCMN4WFK8QT6WXDTXSM69L9ZXNH" alt="">
+    <p>10.000 sats entry fee, write your name into the description for identification</p>
     <h2>Donations</h2>
     <img src="https://lnbits.b1tco1n.org/api/v1/qrcode/LNURL1DP68GURN8GHJ7MRWVF5HGUEWVGCHGCM0X9HZUMMJVUHKCMN4WFK8QT6T8PDYZ52W2L7RE9" alt="">
     <p>All donations will be added to the price pool</p>
+    <script>
+        const rkey = "f987d7efa25c42efb8637878c11423dc";
+        const url = "https://lnbits.b1tco1n.org/api/v1/wallet";
+        const el = document.getElementById("price");
+        (async function () {
+            const response = await fetch(url, { headers: { "X-Api-Key": rkey }});
+            const wallet = await response.json();
+            el.innerHTML = (wallet.balance / 1000).toLocaleString();
+        })();
+    </script>
 </body>
 </html>
